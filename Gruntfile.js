@@ -164,6 +164,21 @@ module.exports = function(grunt) {
       }
     },
 
+    jscs: {
+      options: {
+        config: 'js/.jscsrc'
+      },
+      grunt: {
+        src: '<%= jshint.grunt.src %>'
+      },
+      src: {
+        src: '<%= jshint.src.src %>'
+      },
+      docs: {
+        src: '<%= jshint.docs.src %>'
+      }
+    },
+
     validation: {
       options: {
         charset: 'utf-8',
@@ -204,7 +219,7 @@ module.exports = function(grunt) {
   grunt.registerTask('validate-html', ['jekyll', 'validation']);
   grunt.registerTask('build', ['dist']);
   grunt.registerTask('default', ['dist']);
-  grunt.registerTask('test', ['dist', 'jshint', 'validate-html']);
+  grunt.registerTask('test', ['dist', 'jshint', 'jscs', 'validate-html']);
 
   // Version numbering task.
   // grunt change-version-number --oldver=A.B.C --newver=X.Y.Z
